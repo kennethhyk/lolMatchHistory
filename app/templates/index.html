@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LoL Match History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='assets/icon.png') }}"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</head>
+<body>
+  <div class="top_bar">LoL Match History</div>
+  <div class="content_section">
+    <div id="app">
+      <div class="search" v-if="searchState">
+        <img class="logo" src="{{ url_for('static', filename='assets/icon.png') }}" alt="">
+        <div class="search_bar">
+          <input class="input_summoner" v-model="query" placeholder="Enter Summoner's Name">
+          <div v-on:click="searchSummoner" class="searchSummoner"><i class="search_btn_icon fas fa-search"></i></div>
+        </div>
+        <div class="query_message" v-if="message">
+          ${ message }
+        </div>
+
+        <div class="api_bar">
+          <input class="input_apikey" v-model="apiKey" placeholder="RIOT API key override">
+          <span class="note">* The development Key expires in 24 hours, you can override the system's API key with your newly generated key here.</span>
+        </div>
+      </div>
+
+      <div class="matchHistory" v-if="!searchState">
+          <history-tab
+          v-for="item in matches"
+          v-bind:match="item"
+          v-bind:key="item.matchId"
+          v-bind:class="{ win: item.win }"
+          ></history-tab>
+          <div class="back_btn" v-on:click="back">Back</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+// colors
+$black: #212121;
+$blue: #548fff;
+$white: #ededed;
+$grey: #a5a5a5;
+$red: #ff6060;
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+body {
+  background-color: $white;
+  margin: 0;
+  font-family: 'Open Sans', arial, sans-serif;
+}
+
+.top_bar {
+  background-color: $blue;
+  padding: 10px;
+  color: $white;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.content_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 80vh;
+  .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .logo {
+      display: block;
+      margin-bottom: 50px;
+    }
+    .search_bar {
+      display: flex;
+      flex-direction: row;
+      .input_summoner {
+        width: 450px;
+        outline: none;
+        padding: 16px 32px;
+        border-radius: 1000px;
+        border: 0;
+        font-size: 20px;
+        font-weight: bold;
+        &::placeholder {
+          font-weight: normal;
+          color: $grey;
+        }
+      }
+      .searchSummoner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+        background-color: $blue;
+        color: white;
+        border-radius: 1000px;
+        transform: translateX(-56px);
+        font-size: 20px;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        .search_btn_icon.fa-spinner {
+            animation-name: spin;
+            animation-duration: 2000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 10px 20px rgba(47,47,47,0.19), 0 6px 6px rgba(47,47,47,0.23);
+        }
+      }
+    }
+    .query_message {
+      background-color: $red;
+      color: $white;
+      padding: 5px 12px;
+      margin-top: 24px;
+      border-radius: 1000px;
+    }
+    .api_bar {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin-top: 100px;
+      .input_apikey {
+        border: 0;
+        border-radius: 1000px;
+        outline: none;
+        padding: 5px 8px;
+        font-size: 14px;
+      }
+      .note {
+        color: $grey;
+        font-size: 12px;
+      }
+    }
+  }
+  .matchHistory {
+    .history-tab {
+      background-color: $red;
+      display: flex;
+      margin-bottom: 10px;
+      &.win {
+        background-color: $blue;
+      }
+    }
+    .info {
+      margin: 10px 20px;
+      color: $white;
+    }
+    .back_btn {
+      background-color: $black;
+      padding: 10px 20px;
+      border-radius: 1000px;
+      display: inline-block;
+      color: $white;
+      cursor: pointer;
+    }
+  }
+}
